@@ -45,7 +45,7 @@ function Questionnaire() {
         id: 4,
         type: 'single-choice',
         question: 'Where did you hear about us?',
-        options: ['Social Media', 'Google', 'Hotel', 'Corporate partnership', 'Influencer' , 'Family/Friend', 'Repeat customer' , 'Other'],
+        options: ['Social Media', 'Google', 'Hotel', 'Company partnership', 'Influencer' , 'Family/Friend', 'Repeat customer' , 'Other'],
         answer: '',
     },
     {
