@@ -45,7 +45,7 @@ function MultipleInputsQuestion({ question, setAnswer, setShowError, consultType
                         first_name: e.target.value,
                     })
                     }
-                    className="w-full border border-gray-300  p-3 focus:outline-none focus:custom-border-color"
+                    className="w-full border rounded border-gray-300  p-3 focus:outline-none focus:custom-border-color"
                 />
             </div>
             <div className="relative mb-4">
@@ -61,7 +61,7 @@ function MultipleInputsQuestion({ question, setAnswer, setShowError, consultType
                         surname: e.target.value,
                     })
                     }
-                    className="w-full border border-gray-300 p-3 focus:outline-none focus:custom-border-color"
+                    className="w-full border rounded border-gray-300 p-3 focus:outline-none focus:custom-border-color"
                 />
             </div>
             <div className="relative mb-4">
@@ -78,7 +78,7 @@ function MultipleInputsQuestion({ question, setAnswer, setShowError, consultType
                         email: e.target.value,
                     })
                     }
-                    className="w-full border border-gray-300 p-3 focus:outline-none focus:custom-border-color"
+                    className="w-full border rounded border-gray-300 p-3 focus:outline-none focus:custom-border-color"
                 />
             </div>
             
@@ -98,7 +98,7 @@ function MultipleInputsQuestion({ question, setAnswer, setShowError, consultType
                             phone: phone || '',
                         })
                     }
-                    className="w-full border border-gray-300 p-3 focus:outline-none focus:custom-border-color"
+                    className="w-full border rounded border-gray-300 p-3 focus:outline-none focus:custom-border-color"
                 />
             </div>
         </div>
