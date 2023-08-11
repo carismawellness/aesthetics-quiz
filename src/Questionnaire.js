@@ -13,7 +13,7 @@ function Questionnaire() {
     {
       id: 1,
       type: 'multiple-choice',
-      question: 'Tell us your concerns',
+      question: 'Share your concerns, instantly receive  your personalised recommendations',
       options: ['Wrinkles', 
         'Thin lips', 
         'Facial volumising', 
@@ -51,15 +51,15 @@ function Questionnaire() {
     {
         id: 5,
         type: 'consultation-question',
-        question: 'Your personalised quiz results are now ready!',
-        description: 'For a limited time we are offering free virtual consultations with qualified medical professionals to discuss your concerns, share cutting edge treatment options available to you and answer any of your questions. Look forward to connecting.',
+        question: '',
+        description: 'For a limited time we are offering free virtual consultations with qualified medical professionals to discuss your concerns, share cutting edge treatment options available to you and answer any of your questions.',
         options: ['Free virtual consult (Newsletter)', 'In person consult (€50)', 'No consultation'],
         answer: '',
     },
     {
       id: 6,
       type: 'multiple-inputs',
-      question: 'Please provide your contact details',
+      question: '',
       answer: { first_name: '', surname: '' , email: '', phone: '' },
     }
   ]);
@@ -194,9 +194,9 @@ function Questionnaire() {
     <div className="min-h-screen flex items-start justify-center lg:pt-8">
         <div className='w-full lg:w-1/2'>
             <div className="min-h-screen p-1 lg:min-h-0 w-full mx-auto">
-            <h1 className="text-2xl mb-4 mt-4 font-custom font-thin custom-text-color">
+            <h2 className="text-left mb-4 mt-4 font-custom font-thin custom-text-color w-full">
                 {questionnaire[currentQuestionIndex].question}
-            </h1>
+            </h2>
                 {questionnaire[currentQuestionIndex].description ?  
                     <div className="flex items-center justify-center mb-6">
                         <p className="text-sm custom-text-color font-light text-justify mb-2 font-roboto">{questionnaire[currentQuestionIndex].description}</p>

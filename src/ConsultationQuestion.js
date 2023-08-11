@@ -7,7 +7,7 @@ function ConsultationQuestion({ question, options, setAnswer }) {
 
     return (
         <div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-1 space-around">
+            <div className="grid grid-cols-2 gap-1 space-around">
             {consultationOptions.map((option, index) => (
                 <div key={index}
                 onClick={() => setAnswer(question.id, option)}
@@ -27,9 +27,9 @@ function ConsultationQuestion({ question, options, setAnswer }) {
                             question.answer.includes(option)
                               ? "choice-selected"
                               : "border-gray-200 border custom-text-color"
-                          } uppercase h-64 w-64 py-2 bg-white cursor-pointer transition-all flex flex-col items-center justify-center overflow-auto box-border`}>
-                            <img className="w-12 h-12 mb-4" src={InPersonConsultationIcon} alt="In-person consultation icon" />
-                        <h2 className="mb-4 font-trajan">In Person <br></br>Consult</h2>
+                          } uppercase rounded h-48 w-64 py-2 bg-white cursor-pointer transition-all flex flex-col items-center justify-center overflow-auto box-border`}>
+                            <img className="w-8 h-8 mb-4" src={InPersonConsultationIcon} alt="In-person consultation icon" />
+                        <h4 className="mb-4 text-sm font-trajan">In Person <br></br>Consult</h4>
                         <h5>€50<br></br><br></br><br></br></h5>
                     </div>
                             :
@@ -39,9 +39,9 @@ function ConsultationQuestion({ question, options, setAnswer }) {
                                 question.answer.includes(option)
                                   ? "choice-selected"
                                   : "border-gray-200 border custom-text-color"
-                              } h-64 w-64 py-2 uppercase bg-white cursor-pointer transition-all flex flex-col items-center justify-center overflow-auto box-border`}>
-                                <img className="w-12 h-12 mb-4" src={VirtualConsultationIcon} alt="Virtual consultation icon" />
-                                <h2 className="mb-4 font-trajan">Virtual <br></br> Consult</h2>
+                              } h-48 w-64 rounded py-2 uppercase bg-white cursor-pointer transition-all flex flex-col items-center justify-center overflow-auto box-border`}>
+                                <img className="w-8 h-8 mb-4" src={VirtualConsultationIcon} alt="Virtual consultation icon" />
+                                <h4 className="mb-4 text-sm font-trajan">Virtual <br></br> Consult</h4>
                                 <h5>FREE <br></br>(Subscribe to<br></br>Newsletter)</h5>
                             </div>
                         )
@@ -55,7 +55,7 @@ function ConsultationQuestion({ question, options, setAnswer }) {
                             question.answer.includes("No consultation")
                             ? "choice-selected"
                             : "border-gray-200 border custom-text-color"
-                        } border-gray-200 border p-1 justify-center items-center cursor-pointer`}
+                        } border-gray-200 rounded border p-1 justify-center items-center cursor-pointer`}
                         onClick={() => setAnswer(question.id, options[2])}
                         >
                             <div key={3} className="flex items-center justify-center">
@@ -68,7 +68,7 @@ function ConsultationQuestion({ question, options, setAnswer }) {
                                     onChange={event => setAnswer(question.id, event.target.value)}
                                     checked={question.answer === options[2]}
                                 />
-                                <div className="flex justify-center">
+                                <div className="flex justify-center ">
                                     <span className="flex items-center text-sm font-custom  custom-text-color">Skip Consultation</span>
                                 </div>
                             </div>

@@ -38,7 +38,7 @@ function MultipleChoiceQuestion({ question, options, setAnswer, setError}) {
     };
 
     return (
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-1 ">
+        <div className="grid grid-cols-3 sm:grid-cols-3 gap-1 ">
             {options.map((option, index) => {
                 const Icon = optionIcons[option];
                 return (
@@ -46,7 +46,7 @@ function MultipleChoiceQuestion({ question, options, setAnswer, setError}) {
                     question.answer.includes(option)
                       ? "choice-selected"
                       : "border-gray-200 border custom-text-color"
-                  } h-20 p-2 rounded bg-white cursor-pointer transition-all flex flex-col items-center justify-center`}
+                  } h-16 p-2 rounded bg-white cursor-pointer transition-all flex flex-col items-center justify-center`}
                   onClick={() => handleOptionsChange(option)}>
                     <input  
                         type="checkbox"

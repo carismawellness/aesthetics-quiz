@@ -18,7 +18,7 @@ function SingleChoiceQuestion({ question, options, setAnswer, setError }) {
                 question.answer === option
                   ? "choice-selected"
                   : "border-gray-200 border custom-text-color"
-              } p-4 bg-white cursor-pointer transition-all`}
+              } p-4 bg-white rounded cursor-pointer transition-all`}
               onClick={() => handleClick(question.id, option)}
               >
                 <div key={index} className="flex items-center">
