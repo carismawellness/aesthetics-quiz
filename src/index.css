@@ -1,0 +1,82 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.custom-button-color {
+  background-color: #E7F0F0;
+  color: #706765;
+}
+
+.custom-background-color {
+  background-color: #F5EFE4;
+}
+
+.sandy-button {
+  background-color: #F6EFE3;
+  color: #706765;
+}
+
+.choice-selected {
+  border-color: #9BB1B2;
+  border-width: 4px;
+  color: #9B8D83;
+}
+
+.icon-selected path, .icon-selected circle {
+  stroke: #FFF !important;
+  color: #FFF !important;
+}
+
+.custom-border-color {
+  border-color: #96B2B2;
+  border-width: 1px;
+}
+
+.custom-text-color {
+  color: #9B8D83;
+}
+
+.content-wrapper {
+  position: relative;
+  /* Other styles for your container, like background-color, padding, etc. */
+}
+
+.progress-container {
+  top: 0px;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  border-radius: 5px;
+  position: absolute;
+}
+
+.progress-bar {
+  height: 100%;
+  background-color: #B0A68F;
+  border-radius: 5px;
+}
+
+h5 {
+  font-size: 12px;
+}
+
+.fallback-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  width: 100%;
+  height: 100vh;
+}
+
+.fallback-grid-item {
+  background-color: #f0f0f0;
+  border-radius: 5px;
+}
+
+
+@font-face {
+  font-family: 'Novecentowide-Normal';  /* use the actual font name here */
+  src: url('./assets/fonts/Novecentowide-Normal.otf') format('otf');  /* use the actual font file path and name here */
+  font-weight: 400;  /* adjust as needed */
+  font-style: normal;  /* adjust as needed */
+}

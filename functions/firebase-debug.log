@@ -1,0 +1,54 @@
+[debug] [2023-07-09T15:02:15.177Z] ----------------------------------------------------------------------
+[debug] [2023-07-09T15:02:15.179Z] Command:       /Users/paulkathmann/.nvm/versions/node/v16.20.0/bin/node /Users/paulkathmann/.nvm/versions/node/v16.20.0/bin/firebase deploy --only functions
+[debug] [2023-07-09T15:02:15.179Z] CLI Version:   12.4.0
+[debug] [2023-07-09T15:02:15.179Z] Platform:      darwin
+[debug] [2023-07-09T15:02:15.179Z] Node Version:  v16.20.0
+[debug] [2023-07-09T15:02:15.181Z] Time:          Sun Jul 09 2023 17:02:15 GMT+0200 (Central European Summer Time)
+[debug] [2023-07-09T15:02:15.181Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-07-09T15:02:15.226Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-07-09T15:02:15.226Z] > authorizing via signed-in user (paul.kathmann.98@gmail.com)
+[debug] [2023-07-09T15:02:15.226Z] [iam] checking project smart-questionnaire for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]
+[debug] [2023-07-09T15:02:15.228Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/smart-questionnaire:testIamPermissions [none]
+[debug] [2023-07-09T15:02:15.228Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/smart-questionnaire:testIamPermissions x-goog-quota-user=projects/smart-questionnaire
+[debug] [2023-07-09T15:02:15.228Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/smart-questionnaire:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2023-07-09T15:02:15.940Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/smart-questionnaire:testIamPermissions 200
+[debug] [2023-07-09T15:02:15.940Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/smart-questionnaire:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2023-07-09T15:02:15.941Z] >>> [apiv2][query] POST https://iam.googleapis.com/v1/projects/smart-questionnaire/serviceAccounts/smart-questionnaire@appspot.gserviceaccount.com:testIamPermissions [none]
+[debug] [2023-07-09T15:02:15.941Z] >>> [apiv2][body] POST https://iam.googleapis.com/v1/projects/smart-questionnaire/serviceAccounts/smart-questionnaire@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2023-07-09T15:02:16.147Z] <<< [apiv2][status] POST https://iam.googleapis.com/v1/projects/smart-questionnaire/serviceAccounts/smart-questionnaire@appspot.gserviceaccount.com:testIamPermissions 200
+[debug] [2023-07-09T15:02:16.147Z] <<< [apiv2][body] POST https://iam.googleapis.com/v1/projects/smart-questionnaire/serviceAccounts/smart-questionnaire@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[info] 
+[info] === Deploying to 'smart-questionnaire'...
+[info] 
+[info] i  deploying functions 
+[debug] [2023-07-09T15:02:16.151Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/smart-questionnaire [none]
+[debug] [2023-07-09T15:02:16.424Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/smart-questionnaire 200
+[debug] [2023-07-09T15:02:16.424Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/smart-questionnaire {"projectId":"smart-questionnaire","projectNumber":"453061042969","displayName":"smart-questionnaire","name":"projects/smart-questionnaire","resources":{"hostingSite":"smart-questionnaire"},"state":"ACTIVE","etag":"1_2a3eb84b-747c-4591-9f10-3f7196fe4c73"}
+[info] i  functions: preparing codebase default for deployment 
+[info] i  functions: ensuring required API cloudfunctions.googleapis.com is enabled... 
+[info] i  functions: ensuring required API cloudbuild.googleapis.com is enabled... 
+[info] i  artifactregistry: ensuring required API artifactregistry.googleapis.com is enabled... 
+[debug] [2023-07-09T15:02:16.427Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/smart-questionnaire/services/cloudfunctions.googleapis.com [none]
+[debug] [2023-07-09T15:02:16.427Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/smart-questionnaire/services/cloudfunctions.googleapis.com x-goog-quota-user=projects/smart-questionnaire
+[debug] [2023-07-09T15:02:16.428Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/smart-questionnaire/services/runtimeconfig.googleapis.com [none]
+[debug] [2023-07-09T15:02:16.428Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/smart-questionnaire/services/runtimeconfig.googleapis.com x-goog-quota-user=projects/smart-questionnaire
+[debug] [2023-07-09T15:02:16.429Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/smart-questionnaire/services/cloudbuild.googleapis.com [none]
+[debug] [2023-07-09T15:02:16.429Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/smart-questionnaire/services/cloudbuild.googleapis.com x-goog-quota-user=projects/smart-questionnaire
+[debug] [2023-07-09T15:02:16.430Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/smart-questionnaire/services/artifactregistry.googleapis.com [none]
+[debug] [2023-07-09T15:02:16.430Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/smart-questionnaire/services/artifactregistry.googleapis.com x-goog-quota-user=projects/smart-questionnaire
+[debug] [2023-07-09T15:02:17.321Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/smart-questionnaire/services/artifactregistry.googleapis.com 200
+[debug] [2023-07-09T15:02:17.321Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/smart-questionnaire/services/artifactregistry.googleapis.com [omitted]
+[info] ✔  artifactregistry: required API artifactregistry.googleapis.com is enabled 
+[debug] [2023-07-09T15:02:17.325Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/smart-questionnaire/services/runtimeconfig.googleapis.com 200
+[debug] [2023-07-09T15:02:17.325Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/smart-questionnaire/services/runtimeconfig.googleapis.com [omitted]
+[debug] [2023-07-09T15:02:17.326Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/smart-questionnaire/services/cloudfunctions.googleapis.com 200
+[debug] [2023-07-09T15:02:17.326Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/smart-questionnaire/services/cloudfunctions.googleapis.com [omitted]
+[info] ✔  functions: required API cloudfunctions.googleapis.com is enabled 
+[debug] [2023-07-09T15:02:17.328Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/smart-questionnaire/services/cloudbuild.googleapis.com 200
+[debug] [2023-07-09T15:02:17.328Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/smart-questionnaire/services/cloudbuild.googleapis.com [omitted]
+[info] ✔  functions: required API cloudbuild.googleapis.com is enabled 
+[debug] [2023-07-09T15:02:17.328Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/smart-questionnaire/adminSdkConfig [none]
+[debug] [2023-07-09T15:02:17.619Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/smart-questionnaire/adminSdkConfig 200
+[debug] [2023-07-09T15:02:17.619Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/smart-questionnaire/adminSdkConfig {"projectId":"smart-questionnaire","storageBucket":"smart-questionnaire.appspot.com"}
+[debug] [2023-07-09T15:02:17.619Z] >>> [apiv2][query] GET https://runtimeconfig.googleapis.com/v1beta1/projects/smart-questionnaire/configs [none]
