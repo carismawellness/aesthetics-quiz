@@ -178,6 +178,16 @@ function Questionnaire() {
             return null;
     }
   }
+
+  function getbuttonClass(answer) {
+    const isArrayCondition = Array.isArray(answer) && answer.length !== 0;
+    const objectCondition = typeof answer === "object"  && !Array.isArray(answer) && Object.values(answer).every(field => field !== '');
+    if (typeof answer === 'string' && answer !== '') return 'custom-button-color-ready';
+    if (isArrayCondition) return 'custom-button-color-ready';
+    if (objectCondition) return 'custom-button-color-ready';
+    return 'custom-button-color';
+  }
+  
   
 
   return (
@@ -195,6 +205,7 @@ function Questionnaire() {
                 }
             <div className="space-y-4">
                     {renderQuestionComponent(questionnaire[currentQuestionIndex])}
+                    {console.log("answer: ", questionnaire[currentQuestionIndex].answer)}
                     {error && <p className="custom-text-color">{error}</p>}
                     <div className="flex justify-between">
                     {currentQuestionIndex > 0 && (
@@ -206,7 +217,7 @@ function Questionnaire() {
                         </button>
                     )}
                     <button
-                        className="sm:static sm:mr-0 sm:mb-0 w-full py-2 h-12 custom-button-color font-custom"
+                        className={`${getbuttonClass(questionnaire[currentQuestionIndex].answer)} sm:static sm:mr-0 sm:mb-0 w-full py-2 h-12 font-custom`}
                         onClick={handleSubmit}
                         >
                         {currentQuestionIndex === questionnaire.length - 1 ? 'Submit' : 'Next'}
