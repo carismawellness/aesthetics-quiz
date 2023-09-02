@@ -52,3 +52,54 @@
 [debug] [2023-07-09T15:02:17.619Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/smart-questionnaire/adminSdkConfig 200
 [debug] [2023-07-09T15:02:17.619Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/smart-questionnaire/adminSdkConfig {"projectId":"smart-questionnaire","storageBucket":"smart-questionnaire.appspot.com"}
 [debug] [2023-07-09T15:02:17.619Z] >>> [apiv2][query] GET https://runtimeconfig.googleapis.com/v1beta1/projects/smart-questionnaire/configs [none]
+[debug] [2023-09-02T17:11:42.894Z] ----------------------------------------------------------------------
+[debug] [2023-09-02T17:11:42.895Z] Command:       /Users/paulkathmann/.nvm/versions/node/v16.20.0/bin/node /Users/paulkathmann/.nvm/versions/node/v16.20.0/bin/firebase deploy --only functions
+[debug] [2023-09-02T17:11:42.895Z] CLI Version:   12.4.0
+[debug] [2023-09-02T17:11:42.895Z] Platform:      darwin
+[debug] [2023-09-02T17:11:42.895Z] Node Version:  v16.20.0
+[debug] [2023-09-02T17:11:42.896Z] Time:          Sat Sep 02 2023 13:11:42 GMT-0400 (Eastern Daylight Time)
+[debug] [2023-09-02T17:11:42.896Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-09-02T17:11:42.928Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-09-02T17:11:42.928Z] > authorizing via signed-in user (paul.kathmann.98@gmail.com)
+[debug] [2023-09-02T17:11:42.928Z] [iam] checking project smart-questionnaire for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]
+[debug] [2023-09-02T17:11:42.928Z] > refreshing access token with scopes: []
+[debug] [2023-09-02T17:11:42.929Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2023-09-02T17:11:42.929Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2023-09-02T17:11:43.075Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 400
+[debug] [2023-09-02T17:11:43.075Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2023-09-02T17:11:43.075Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/smart-questionnaire:testIamPermissions [none]
+[debug] [2023-09-02T17:11:43.075Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/smart-questionnaire:testIamPermissions x-goog-quota-user=projects/smart-questionnaire
+[debug] [2023-09-02T17:11:43.076Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/smart-questionnaire:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2023-09-02T17:11:43.289Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/smart-questionnaire:testIamPermissions 401
+[debug] [2023-09-02T17:11:43.289Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/smart-questionnaire:testIamPermissions {"error":{"code":401,"message":"Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.","status":"UNAUTHENTICATED","details":[{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"ACCESS_TOKEN_TYPE_UNSUPPORTED","metadata":{"method":"google.cloudresourcemanager.v1.Projects.TestIamPermissions","service":"cloudresourcemanager.googleapis.com"}}]}}
+[debug] [2023-09-02T17:11:43.290Z] [iam] error while checking permissions, command may fail: FirebaseError: HTTP Error: 401, Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.
+[debug] [2023-09-02T17:11:43.290Z] > refreshing access token with scopes: []
+[debug] [2023-09-02T17:11:43.291Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2023-09-02T17:11:43.291Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2023-09-02T17:11:43.425Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 400
+[debug] [2023-09-02T17:11:43.425Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2023-09-02T17:11:43.425Z] >>> [apiv2][query] POST https://iam.googleapis.com/v1/projects/smart-questionnaire/serviceAccounts/smart-questionnaire@appspot.gserviceaccount.com:testIamPermissions [none]
+[debug] [2023-09-02T17:11:43.425Z] >>> [apiv2][body] POST https://iam.googleapis.com/v1/projects/smart-questionnaire/serviceAccounts/smart-questionnaire@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2023-09-02T17:11:43.534Z] <<< [apiv2][status] POST https://iam.googleapis.com/v1/projects/smart-questionnaire/serviceAccounts/smart-questionnaire@appspot.gserviceaccount.com:testIamPermissions 401
+[debug] [2023-09-02T17:11:43.534Z] <<< [apiv2][body] POST https://iam.googleapis.com/v1/projects/smart-questionnaire/serviceAccounts/smart-questionnaire@appspot.gserviceaccount.com:testIamPermissions {"error":{"code":401,"message":"Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.","status":"UNAUTHENTICATED","details":[{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"ACCESS_TOKEN_TYPE_UNSUPPORTED","metadata":{"service":"iam.googleapis.com","method":"google.iam.admin.v1.IAM.TestIamPermissions"}}]}}
+[debug] [2023-09-02T17:11:43.535Z] [functions] service account IAM check errored, deploy may fail: HTTP Error: 401, Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project. {"name":"FirebaseError","children":[],"context":{"body":{"error":{"code":401,"message":"Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.","status":"UNAUTHENTICATED","details":[{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"ACCESS_TOKEN_TYPE_UNSUPPORTED","metadata":{"service":"iam.googleapis.com","method":"google.iam.admin.v1.IAM.TestIamPermissions"}}]}},"response":{"statusCode":401}},"exit":1,"message":"HTTP Error: 401, Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.","status":401}
+[info] 
+[info] === Deploying to 'smart-questionnaire'...
+[info] 
+[info] i  deploying functions 
+[debug] [2023-09-02T17:11:43.539Z] > refreshing access token with scopes: []
+[debug] [2023-09-02T17:11:43.540Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2023-09-02T17:11:43.540Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2023-09-02T17:11:43.672Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 400
+[debug] [2023-09-02T17:11:43.672Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2023-09-02T17:11:43.674Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/smart-questionnaire [none]
+[debug] [2023-09-02T17:11:43.801Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/smart-questionnaire 401
+[debug] [2023-09-02T17:11:43.801Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/smart-questionnaire {"error":{"code":401,"message":"Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.","status":"UNAUTHENTICATED"}}
+[debug] [2023-09-02T17:11:43.802Z] HTTP Error: 401, Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.
+[debug] [2023-09-02T17:11:43.804Z] FirebaseError: HTTP Error: 401, Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.
+    at responseToError (/Users/paulkathmann/.nvm/versions/node/v16.20.0/lib/node_modules/firebase-tools/lib/responseToError.js:49:12)
+    at RetryOperation._fn (/Users/paulkathmann/.nvm/versions/node/v16.20.0/lib/node_modules/firebase-tools/lib/apiv2.js:288:77)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+[error] 
+[error] Error: Failed to get Firebase project smart-questionnaire. Please make sure the project exists and your account has permission to access it.

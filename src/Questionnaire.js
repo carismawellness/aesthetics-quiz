@@ -6,6 +6,7 @@ import { Navigate, useNavigate } from 'react-router-dom';
 import ConsultationQuestion from './ConsultationQuestion';
 import { sendDataToZoho } from './api';
 import { isPossiblePhoneNumber } from 'react-phone-number-input';
+import { ReactComponent as USPIcon } from './assets/icons/uspicon.svg';
 
 
 function Questionnaire() {
@@ -44,12 +45,19 @@ function Questionnaire() {
     {
         id: 4,
         type: 'single-choice',
+        question: 'Which kind of treatments would you be interested in?',
+        options: ['Botox', 'Lip Fillers', 'Dermal Fillers', 'Fat Disolving', 'Mesotherapy', 'PRP', 'Thread Lift', 'Chemical Peels', 'Microneedling', 'Collagen-Stimulator', 'MFU-Ultight' ],
+        answer: '',
+    },
+    {
+        id: 5,
+        type: 'single-choice',
         question: 'Where did you hear about us?',
         options: ['Social Media', 'Google', 'Hotel', 'Company partnership', 'Influencer' , 'Family/Friend', 'Repeat customer' , 'Other'],
         answer: '',
     },
     {
-        id: 5,
+        id: 6,
         type: 'consultation-question',
         question: '',
         description: 'For a limited time we are offering free virtual consultations with qualified medical professionals to discuss your concerns, share cutting edge treatment options available to you and answer any of your questions.',
@@ -57,7 +65,7 @@ function Questionnaire() {
         answer: '',
     },
     {
-      id: 6,
+      id: 7,
       type: 'multiple-inputs',
       question: '',
       answer: { first_name: '', surname: '' , email: '', phone: '' },
@@ -82,27 +90,27 @@ function Questionnaire() {
 
     const handleSubmit = () => {
         console.log('handleSubmit triggered / next button clicked');
-        if (![4, 5].includes(currentQuestionIndex) && !questionnaire[currentQuestionIndex].answer[0]) {
+        if (![5, 6].includes(currentQuestionIndex) && !questionnaire[currentQuestionIndex].answer[0]) {
             setError('Please select an answer and try again');
             return;
         } else {
             setError(null);
         }
-        if (currentQuestionIndex === 5) {
-            if (!validateEmail(questionnaire[5].answer.email)) {
+        if (currentQuestionIndex === 6) {
+            if (!validateEmail(questionnaire[6].answer.email)) {
                 setError('Please enter a valid email address.');
                 return;
             }
-            if (!isPossiblePhoneNumber(questionnaire[5].answer.phone)) {
+            if (!isPossiblePhoneNumber(questionnaire[6].answer.phone)) {
                 setError('Please enter a valid phone number.');
                 return;
             }
-            if (!questionnaire[5].answer.first_name || !questionnaire[5].answer.surname) {
+            if (!questionnaire[5].answer.first_name || !questionnaire[6].answer.surname) {
                 setError("Please enter your name.");
                 return;
             }
         }
-        if (currentQuestionIndex === 4 && questionnaire[4].answer === 'No consultation') {
+        if (currentQuestionIndex === 5 && questionnaire[5].answer === 'No consultation') {
             storeAndRedirect();
         } else if (currentQuestionIndex < questionnaire.length - 1) {
         setCurrentQuestionIndex(currentQuestionIndex + 1);
@@ -223,6 +231,9 @@ function Questionnaire() {
                         {currentQuestionIndex === questionnaire.length - 1 ? 'Submit' : 'Next'}
                     </button>
                     </div>
+                </div>
+                <div className="flex justify-start items-center">
+                    <USPIcon className='h-20 mt-12'></USPIcon>   
                 </div>
             </div>
         </div>
