@@ -37,7 +37,7 @@ exports.sendDataToZoho = functions.https.onRequest((req, res) => {
                 "Skin_concerns": data[0],
                 "Skin_type": data[1],
                 "Comfort_with_injectables": comfort_with_injectables,
-                "interested_treatment": data[3],
+                "Interested_Treatment": data[3],
                 "Where_did_you_hear_about_us": data[4],
                 "Consultation_type1": data[5],
                 "First_Name": data[6].first_name,

@@ -13,6 +13,7 @@ import MFUIcon from './assets/thumbnails/MFU.png';
 import LipFillersIcon from './assets/thumbnails/LipFiller.png';
 import ChemicalPeelIcon from './assets/thumbnails/ChemicalPeel.png';
 import TopicalSkincareIcon from './assets/thumbnails/TopicalSkinCare.png';
+import AdvancedFacialIcon from './assets/thumbnails/adv-hydrofacial.png';
 import {ReactComponent as IconWrinkles} from "./assets/icons/Wrinkles.svg";
 import {ReactComponent as IconThinLips} from "./assets/icons/ThinLips.svg";
 import {ReactComponent as IconFacialVolumising} from "./assets/icons/FacialVolumising.svg";
@@ -34,6 +35,7 @@ function Treatments() {
         "Botox":   { title: "Botox", image: BotoxIcon, link: "https://www.carismaaesthetics.com/botox-malta", description: "Botox is a drug that temporarily paralyzes muscle. In small doses is used to treat wrinkles, facial slimming, decrease the oil production, excessive sweating and migraines.", concerns: ["Wrinkles", "Oily skin"] },
         "DermalFillers": { title: "Dermal Fillers", image: DermalFillersIcon, link: "https://www.carismaaesthetics.com/dermal-fillers-malta", description: "Dermal fillers are used to restore volume loss in the face. They are injected into the skin and are used to treat wrinkles, facial volume loss, thin lips, facial slimming and acne scars.", concerns: ["Wrinkles", "Facial volumising", "Acne", "Double chin"] },
         "HydraFacial": { title: "Hydrafacial", image: HydraFacialIcon, link: "https://www.carismaaesthetics.com/hydrafacial-malta", description: "HydraFacial is a medical grade facial that uses patented technology to cleanse, extract and hydrate the skin. It is used to treat acne, uneven skin tone, dry skin and wrinkles.", concerns: ["Uneven skin tone", "Acne", "Dry skin"] },
+        "Advanced Hydrating Facial": { title: "Advanced Hydrating Facial", image: AdvancedFacialIcon, link: "https://www.carismaaesthetics.com/aqualab-advanced-hydrating-facial", description: "The Advanced Hydrating Facial is a 30-40 minute, non-invasive treatment that cleanses, exfoliates, extracts, and hydrates the skin. Using cutting-edge technology, it delivers immediate and lasting results for up to 4-5 weeks. Personalized serums address specific concerns like dryness, aging, acne, and sensitivity.", concerns: ["Wrinkles", "Uneven skin tone", "Acne", "Dry skin"]},
         "Mesotherapy": { title: "Mesotherapy", image: MesotherapyIcon, link: "https://www.carismaaesthetics.com/mesotherapy-malta", description: "Mesotherapy is a treatment that involves injecting a cocktail of vitamins, minerals and hyaluronic acid into the skin. It is used to treat dark circles, acne scars, uneven skin tone and dry skin.", concerns: ["Dark circles", "Dry skin", "Uneven skin tone"] },
         "Microneedling": { title: "Microneedling", image: MicroneedlingIcon, link: "https://www.carismaaesthetics.com/microneedling-malta", description: "Microneedling is a treatment that involves using a device with tiny needles to create micro-injuries in the skin. It is used to treat acne scars, dark circles, dry skin, uneven skin tone and wrinkles.", concerns: ["Acne", "Dark circles", "Dry skin", "Uneven skin tone", "Wrinkles"] },
         "PRP": { title: "PRP", image: PRPIcon, link: "https://www.carismaaesthetics.com/prp-malta", description: "PRP (Platelet Rich Plasma) is a treatment that involves taking a sample of your blood, spinning it in a centrifuge to separate the plasma and then injecting the plasma into the skin. It is used to treat dark circles, acne scars, dry skin and wrinkles.", concerns: ["Dark circles", "Dry skin", "Acne", "Wrinkles"] },
@@ -46,27 +48,27 @@ function Treatments() {
     // get the treatments by concern using a map of concerns to treatments including the needle question
     }
     const withNeedleMap = { 
-        "Acne": ["Collagen", "Microneedling", "DermalFillers", "PRP"], 
+        "Acne": ["Collagen", "Microneedling", "DermalFillers", "PRP", "Advanced Hydrating Facial"], 
         "Dark circles": ["PRP", "Microneedling", "Mesotherapy"], 
         "Double chin": ["UnderChinReduction", "DermalFillers", "Collagen"], 
-        "Dry skin": [ "Mesotherapy", "Microneedling", "PRP"], 
+        "Dry skin": [ "Mesotherapy", "Microneedling", "PRP", "Advanced Hydrating Facial"], 
         "Facial volumising": ["DermalFillers", "Collagen", "ThreadLift"], 
         "Oily skin": ["Botox"], 
         "Thin lips": ["LipFillers"], 
-        "Uneven skin tone": ["Mesotherapy", "Microneedling"], 
-        "Wrinkles": ["Botox", "DermalFillers", "Collagen", "ThreadLift", "Microneedling", "Mesotherapy", "PRP"]
+        "Uneven skin tone": ["Mesotherapy", "Microneedling", "Advanced Hydrating Facial"], 
+        "Wrinkles": ["Botox", "DermalFillers", "Collagen", "ThreadLift", "Microneedling", "Mesotherapy", "PRP", "Advanced Hydrating Facial"]
     }
     // non-needlemap
     const withoutNeedleMap = {
-        "Acne": ["Chemical Peel", "Topical Skincare"],
+        "Acne": ["Chemical Peel", "Topical Skincare", "Advanced Hydrating Facial"],
         "Dark circles": ["Chemical Peel"],
         "Double chin": ["MFU"],
-        "Dry skin": [],
+        "Dry skin": ["Advanced Hydrating Facial"],
         "Facial volumising": ["MFU"],
         "Oily skin": ["Chemical Peel"],
-        "Uneven skin tone": ["Chemical Peel"],
+        "Uneven skin tone": ["Chemical Peel", "Advanced Hydrating Facial"],
         "Thin Lips": [],
-        "Wrinkles": ["MFU", "Chemical Peel"]
+        "Wrinkles": ["MFU", "Chemical Peel", "Advanced Hydrating Facial"]
     }
 
     const optionsData = {
