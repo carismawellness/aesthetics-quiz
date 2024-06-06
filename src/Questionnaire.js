@@ -46,7 +46,7 @@ function Questionnaire() {
         id: 4,
         type: 'single-choice',
         question: 'Which kind of treatments would you be interested in?',
-        options: ['Botox', 'Lip Fillers', 'Dermal Fillers', 'Fat Disolving', 'Mesotherapy', 'PRP', 'Thread Lift', 'Chemical Peels', 'Microneedling', 'Collagen-Stimulator', 'MFU-Ultight' ],
+        options: ['Botox', 'Lip Fillers', 'Dermal Fillers', 'Fat Disolving', 'Mesotherapy', 'PRP', 'Thread Lift', 'Chemical Peels', 'Microneedling', 'Collagen-Stimulator', 'MFU-Ultight', 'Advanced Hydrating Facial' ],
         answer: '',
     },
     {
