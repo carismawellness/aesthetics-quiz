@@ -41,7 +41,7 @@ function Treatments() {
         "PRP": { title: "PRP", image: PRPIcon, link: "https://www.carismaaesthetics.com/prp-malta", description: "PRP (Platelet Rich Plasma) is a treatment that involves taking a sample of your blood, spinning it in a centrifuge to separate the plasma and then injecting the plasma into the skin. It is used to treat dark circles, acne scars, dry skin and wrinkles.", concerns: ["Dark circles", "Dry skin", "Acne", "Wrinkles"] },
         "ThreadLift": { title: "Thread lift", image: ThreadLiftIcon, link: "https://www.carismaaesthetics.com/thread-lift-malta", description: "Thread lifts are a non-surgical alternative to a facelift. They involve inserting dissolvable threads into the skin to lift and tighten the skin. They are used to treat wrinkles and facial volume loss.", concerns: ["Wrinkles", "Facial volumising"] },
         "UnderChinReduction": { title: "Fat Dissolving", image: UnderChinReductionIcon, link: "https://www.carismaaesthetics.com/chin-fat-reduction-malta", description: "Under chin reduction is a treatment that involves injecting a fat dissolving solution into the skin. It is used to treat double chin.", concerns: ["Double chin"] },
-        "MFU": { title: "MFU", image: MFUIcon, link: "https://www.carismaaesthetics.com/mfu-ultight-malta", description: "MFU (Micro Focused Ultrasound) is a treatment that uses ultrasound energy to tighten the skin and reduce under chin fat. It is used to treat wrinkles and facial volume loss too.", concerns: ["Wrinkles", "Double chin", "Facial volumising"] },
+        // "MFU": { title: "MFU", image: MFUIcon, link: "https://www.carismaaesthetics.com/mfu-ultight-malta", description: "MFU (Micro Focused Ultrasound) is a treatment that uses ultrasound energy to tighten the skin and reduce under chin fat. It is used to treat wrinkles and facial volume loss too.", concerns: ["Wrinkles", "Double chin", "Facial volumising"] },
         "LipFillers": { title: "Lip Fillers", image: LipFillersIcon, link: "https://www.carismaaesthetics.com/lip-fillers-malta", description: "Lipfillers are a cosmetic procedure where an injection is used to make lips appear fuller.", concerns: ["Thin lips"] },
         "Chemical Peel": { title: "Chemical Peel", image: ChemicalPeelIcon, link: "https://www.carismaaesthetics.com/chemical-peels-malta", description: "Chemical peels are a treatment that involves applying a chemical solution to the skin to exfoliate the skin and stimulate new skin growth. They are used to treat acne, acne scars, dark circles, dry skin and uneven skin tone.", concerns: ["Acne", "Dark circles", "Dry skin", "Uneven skin tone"] },
         "Topical Skincare": { title: "Topical Skincare", image: TopicalSkincareIcon, link: "https://www.carismaspa.com/home-care-carisma-spa-phytomer.html", description: "Topical skincare is a treatment that involves applying a cream to the skin. It is used to treat acne, dark circles, dry skin and uneven skin tone.", concerns: ["Acne", "Dark circles", "Dry skin", "Uneven skin tone"] },
@@ -62,13 +62,13 @@ function Treatments() {
     const withoutNeedleMap = {
         "Acne": ["Chemical Peel", "Topical Skincare", "Advanced Hydrating Facial"],
         "Dark circles": ["Chemical Peel"],
-        "Double chin": ["MFU"],
+        "Double chin": [],
         "Dry skin": ["Advanced Hydrating Facial"],
-        "Facial volumising": ["MFU"],
+        "Facial volumising": [],
         "Oily skin": ["Chemical Peel"],
         "Uneven skin tone": ["Chemical Peel", "Advanced Hydrating Facial"],
         "Thin Lips": [],
-        "Wrinkles": ["MFU", "Chemical Peel", "Advanced Hydrating Facial"]
+        "Wrinkles": ["Chemical Peel", "Advanced Hydrating Facial"]
     }
 
     const optionsData = {
