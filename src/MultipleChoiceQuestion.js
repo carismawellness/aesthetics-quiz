@@ -1,36 +1,9 @@
 import React from "react";
-import { ReactComponent as IconWrinkles } from "./assets/icons/Wrinkles.svg";
-import { ReactComponent as IconThinLips } from "./assets/icons/ThinLips.svg";
-import { ReactComponent as IconFacialVolumising } from "./assets/icons/FacialVolumising.svg";
-import { ReactComponent as IconUnevenSkinTone } from "./assets/icons/UnevenSkinTone.svg";
-import { ReactComponent as IconAcne } from "./assets/icons/Acne.svg";
-import { ReactComponent as IconDoubleChin } from "./assets/icons/DoubleChin.svg";
-import { ReactComponent as IconDarkCircles } from "./assets/icons/DarkCircles.svg";
-import { ReactComponent as IconDrySkin } from "./assets/icons/DrySkin.svg";
-import { ReactComponent as IconOilySkin } from "./assets/icons/OilySkin.svg";
-
-
-
-
-
 
 function MultipleChoiceQuestion({ question, options, setAnswer, setError }) {
-    const optionIcons = {
-        'Wrinkles': IconWrinkles,
-        'Thin lips': IconThinLips,
-        'Facial volumising': IconFacialVolumising,
-        'Uneven skin tone': IconUnevenSkinTone,
-        'Acne': IconAcne,
-        'Double chin': IconDoubleChin,
-        'Dark circles': IconDarkCircles,
-        'Dry skin': IconDrySkin,
-        'Oily skin': IconOilySkin,
-    };
     const handleOptionsChange = (option) => {
-        // if the option is already selected, remove it from the array
         if (question.answer.includes(option)) {
-            setAnswer(question.id, question.answer.filter((o) => o !== option)
-            );
+            setAnswer(question.id, question.answer.filter((o) => o !== option));
         } else {
             setAnswer(question.id, [...question.answer, option]);
             setError(null);
