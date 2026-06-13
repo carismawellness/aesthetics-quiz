@@ -115,12 +115,21 @@ function Questionnaire() {
 
     const storeAndRedirect = async () => {
         const answers = questionnaire.map((q) => q.answer);
-        // Redirect based on the answers
-        // add switch case for each answer combination
         localStorage.setItem('questionnaireData', JSON.stringify(answers));
         await sendDataToGHL(answers);
-        //navigate('/treatments');
-        window.top.location.href = 'https://www.carismaaesthetics.com/quiz-results';
+
+        const concerns  = Array.isArray(answers[0]) ? answers[0].join(',') : (answers[0] || '');
+        const injectables = answers[2] || 'Yes';
+        const treatment   = answers[3] || '';
+        const firstName   = answers[6]?.first_name || '';
+
+        const params = new URLSearchParams();
+        if (concerns)   params.set('concerns',    concerns);
+        params.set('injectables', injectables);
+        if (treatment)  params.set('treatment',   treatment);
+        if (firstName)  params.set('name',        firstName);
+
+        window.top.location.href = `https://aesthetics-pied.vercel.app/quiz-results?${params.toString()}`;
     }
   
 
