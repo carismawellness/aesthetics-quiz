@@ -1,103 +1,124 @@
 const functions = require("firebase-functions");
 const axios = require('axios');
-const e = require("cors");
 const cors = require('cors')({origin: true});
 
-const TOKEN_URL = 'https://accounts.zoho.eu/oauth/v2/token';
-const CLIENT_ID = functions.config().zoho.client_id;
-const CLIENT_SECRET = functions.config().zoho.client_secret;
-const REFRESH_TOKEN = functions.config().zoho.refresh_token;
-const API_URL = 'https://zohoapis.eu/crm/v4/';
+const GHL_API_URL = 'https://services.leadconnectorhq.com';
+const GHL_API_KEY = process.env.GHL_API_KEY;
+const GHL_LOCATION_ID = 'Goi7kzVK7iwe2woxUHkT';
 
-exports.sendDataToZoho = functions.https.onRequest((req, res) => {
+const GHL_CUSTOM_FIELDS = {
+    skinConcerns   : 'am8nNn4YuI1JRabDLunK',
+    skinType       : 'vKRvABX49b3SnJGUbAn8',
+    injectables    : 'YnMzGHVstV0MOFacRRbR',
+    treatment      : 'ZnN24StycI2h48AGdXgF',
+    referralSource : 'fvxWpy0h67N9DGrbO3v0',
+    consultation   : 'hhfPb91ew6f7ihDMl9DX',
+};
+
+const GHL_HEADERS = (key) => ({
+    'Authorization': `Bearer ${key}`,
+    'Version': '2021-07-28',
+    'Content-Type': 'application/json',
+});
+
+exports.sendDataToGHL = functions.https.onRequest((req, res) => {
     cors(req, res, async () => {
         try {
-            // Get new access token
-            const response = await axios.post(TOKEN_URL, null, {
-                params: {
-                    refresh_token: REFRESH_TOKEN,
-                    client_id: CLIENT_ID,
-                    client_secret: CLIENT_SECRET,
-                    grant_type: 'refresh_token',
-                },
-                headers: {
-                    "Content-Type": "application/x-www-form-urlencoded"
-                }
-            });
+            const data = req.body;
+            console.log("Quiz submission received:", JSON.stringify(data));
 
-            const accessToken = response.data.access_token;
-            console.log("request body:", req.body);
-            const data = req.body; // access data from client
-            console.log("req.body: ", data);
+            const skinConcerns   = Array.isArray(data[0]) ? data[0].join(', ') : data[0];
+            const skinType       = data[1];
+            const injectables    = data[2];
+            const treatment      = data[3];
+            const hearAboutUs    = data[4];
+            const consultation   = data[5];
+            const contactInfo    = data[6];
 
-            const comfort_with_injectables = data[2] === 'Yes';
+            const apiKey = GHL_API_KEY;
 
-            // Map data to Zoho format
-            const zohoData = {
-                "Skin_concerns": data[0],
-                "Skin_type": data[1],
-                "Comfort_with_injectables": comfort_with_injectables,
-                "Interested_Treatment": data[3],
-                "Where_did_you_hear_about_us": data[4],
-                "Consultation_type1": data[5],
-                "First_Name": data[6].first_name,
-                "Last_Name": data[6].surname,
-                "Email": data[6].email,
-                "Phone": data[6].phone,
-                "Lead_Source": "Quiz",
+            const contactPayload = {
+                locationId  : GHL_LOCATION_ID,
+                firstName   : contactInfo.first_name,
+                lastName    : contactInfo.surname,
+                email       : contactInfo.email,
+                phone       : contactInfo.phone,
+                source      : 'Quiz',
+                tags        : [
+                    `quiz-lead`,
+                    `skin-type:${skinType}`,
+                    `injectables:${injectables}`,
+                    `consultation:${consultation}`,
+                    `heard-via:${hearAboutUs}`,
+                ],
+                customFields: [
+                    { id: GHL_CUSTOM_FIELDS.skinConcerns,   value: skinConcerns },
+                    { id: GHL_CUSTOM_FIELDS.skinType,       value: skinType },
+                    { id: GHL_CUSTOM_FIELDS.injectables,    value: injectables },
+                    { id: GHL_CUSTOM_FIELDS.treatment,      value: treatment },
+                    { id: GHL_CUSTOM_FIELDS.referralSource, value: hearAboutUs },
+                    { id: GHL_CUSTOM_FIELDS.consultation,   value: consultation },
+                ],
             };
 
-            // get contact id
-            const findContactResponse = await axios.get(`${API_URL}Contacts/search?email=${data[5].email}`, {
-                headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: `Bearer ${accessToken}`,
-                },
-            });
-
-            // Get contact id if record was found
+            // Check if contact already exists by email
             let contactId = null;
-            if (findContactResponse.data) {
-                contactId = findContactResponse.data.data[0].id;
-            }
-            // Update contact if it exists
-            const zohoResponse = ["Failed to update contact"];
-            if (contactId) {
-                try {
-                        console.log("axios put request to: ", `${API_URL}Contacts/${contactId}`);
-                        const zohoResponse = await axios.put(`${API_URL}Contacts/${contactId}`, {
-                            data: [zohoData],
-                            trigger: ['approval', 'workflow', 'blueprint'],
-                        },
-                        {
-                        headers: {
-                            'Content-Type': 'application/json',
-                            Authorization: `Bearer ${accessToken}`,
-                        },
-                        });
-                } catch (error) {
-                    console.log(error.message);
+            try {
+                const searchRes = await axios.get(
+                    `${GHL_API_URL}/contacts/search?locationId=${GHL_LOCATION_ID}&email=${encodeURIComponent(contactInfo.email)}&limit=1`,
+                    { headers: GHL_HEADERS(apiKey) }
+                );
+                const found = searchRes.data?.contacts;
+                if (found && found.length > 0) {
+                    contactId = found[0].id;
                 }
-            } else {
-                // Send data to Zoho if contact doesn't exist
-                const zohoResponse = await axios.post(`${API_URL}Contacts`, {
-                    data: [zohoData],
-                    trigger: ['approval', 'workflow', 'blueprint'],
-                },
-                {
-                headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: `Bearer ${accessToken}`,
-                },
-                });
+            } catch (searchErr) {
+                console.log("Contact search failed, will create new:", searchErr.message);
             }
+
+            let ghlResponse;
+            if (contactId) {
+                ghlResponse = await axios.put(
+                    `${GHL_API_URL}/contacts/${contactId}`,
+                    contactPayload,
+                    { headers: GHL_HEADERS(apiKey) }
+                );
+                console.log("Updated existing GHL contact:", contactId);
+            } else {
+                ghlResponse = await axios.post(
+                    `${GHL_API_URL}/contacts/`,
+                    contactPayload,
+                    { headers: GHL_HEADERS(apiKey) }
+                );
+                contactId = ghlResponse.data?.contact?.id;
+                console.log("Created new GHL contact:", contactId);
+            }
+
+            // Add a note with the full quiz breakdown
+            if (contactId) {
+                const noteBody = [
+                    '--- Quiz Lead Submission ---',
+                    `Skin Concerns: ${skinConcerns}`,
+                    `Skin Type: ${skinType}`,
+                    `Comfortable with Injectables: ${injectables}`,
+                    `Treatment Interest: ${treatment}`,
+                    `Where They Heard About Us: ${hearAboutUs}`,
+                    `Consultation Type: ${consultation}`,
+                ].join('\n');
+
+                await axios.post(
+                    `${GHL_API_URL}/contacts/${contactId}/notes/`,
+                    { body: noteBody, userId: contactId },
+                    { headers: GHL_HEADERS(apiKey) }
+                );
+            }
+
             res.set('Access-Control-Allow-Origin', '*');
-            res.status(200).send(zohoResponse.data);
+            res.status(200).send({ success: true, contactId });
+
         } catch (error) {
-            console.error('Error updating Zoho contact', error);
-            res.status(500).send('Failed to update Zoho contact' + error.message);
+            console.error('Error sending to GHL:', error.response?.data || error.message);
+            res.status(500).send('Failed to send to GoHighLevel: ' + error.message);
         }
     });
 });
-
-

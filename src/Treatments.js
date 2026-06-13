@@ -9,7 +9,6 @@ import MicroneedlingIcon  from './assets/thumbnails/Microneedling.png';
 import PRPIcon from './assets/thumbnails/PRP.png';
 import ThreadLiftIcon from './assets/thumbnails/ThreadLift.png';
 import UnderChinReductionIcon from './assets/thumbnails/UnderChinReduction.png';
-import MFUIcon from './assets/thumbnails/MFU.png';
 import LipFillersIcon from './assets/thumbnails/LipFiller.png';
 import ChemicalPeelIcon from './assets/thumbnails/ChemicalPeel.png';
 import TopicalSkincareIcon from './assets/thumbnails/TopicalSkinCare.png';
@@ -112,6 +111,7 @@ function Treatments() {
             };
             setTreatments(tempTreatments);
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [data]);
 
     let firstName = 'You'

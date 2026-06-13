@@ -1,6 +1,6 @@
 import React, { useEffect} from "react";
 import 'react-phone-number-input/style.css'
-import PhoneInput, { isPossiblePhoneNumber } from 'react-phone-number-input'
+import PhoneInput from 'react-phone-number-input'
 
 function MultipleInputsQuestion({ question, setAnswer, setShowError, consultType }) {
 

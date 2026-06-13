@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import SingleChoiceQuestion from './SingleChoiceQuestion';
 import MultipleInputsQuestion from './MultipleInputsQuestion';
 import MultipleChoiceQuestion from './MultipleChoiceQuestion';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import ConsultationQuestion from './ConsultationQuestion';
-import { sendDataToZoho } from './api';
+import { sendDataToGHL } from './api';
 import { isPossiblePhoneNumber } from 'react-phone-number-input';
 import { ReactComponent as USPIcon } from './assets/icons/uspicon.svg';
 
@@ -74,18 +74,12 @@ function Questionnaire() {
 
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
     const [error, setError] = useState(null);
-    const navigate = useNavigate();
+    useNavigate();
 
     const validateEmail = (email) => {
         // Regular expression for email validation
         const re = /\S+@\S+\.\S+/;
         return re.test(email);
-    };
-
-    const validatePhone = (phone) => {
-        // Regular expression for phone number validation
-        const re = /^[+]?[0-9\b]+$/;
-        return re.test(phone);
     };
 
     const handleSubmit = () => {
@@ -124,7 +118,7 @@ function Questionnaire() {
         // Redirect based on the answers
         // add switch case for each answer combination
         localStorage.setItem('questionnaireData', JSON.stringify(answers));
-        await sendDataToZoho(answers);
+        await sendDataToGHL(answers);
         //navigate('/treatments');
         window.top.location.href = 'https://www.carismaaesthetics.com/quiz-results';
     }

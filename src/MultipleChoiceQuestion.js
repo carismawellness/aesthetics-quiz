@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { ReactComponent as IconWrinkles } from "./assets/icons/Wrinkles.svg";
 import { ReactComponent as IconThinLips } from "./assets/icons/ThinLips.svg";
 import { ReactComponent as IconFacialVolumising } from "./assets/icons/FacialVolumising.svg";
@@ -40,7 +40,6 @@ function MultipleChoiceQuestion({ question, options, setAnswer, setError }) {
     return (
         <div className="grid grid-cols-3 sm:grid-cols-3 gap-1 ">
             {options.map((option, index) => {
-                const Icon = optionIcons[option];
                 return (
                     <div key={index} className={`${
                         question.answer.includes(option)
