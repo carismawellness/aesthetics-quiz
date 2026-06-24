@@ -91,16 +91,17 @@ function Questionnaire() {
             setError(null);
         }
         if (currentQuestionIndex === 6) {
-            if (!validateEmail(questionnaire[6].answer.email)) {
+            const contact = questionnaire[6].answer;
+            if (!contact.first_name?.trim() || !contact.surname?.trim()) {
+                setError("Please enter your first name and surname.");
+                return;
+            }
+            if (!validateEmail(contact.email)) {
                 setError('Please enter a valid email address.');
                 return;
             }
-            if (!isPossiblePhoneNumber(questionnaire[6].answer.phone)) {
+            if (!isPossiblePhoneNumber(contact.phone || '')) {
                 setError('Please enter a valid phone number.');
-                return;
-            }
-            if (!questionnaire[6].answer.first_name || !questionnaire[6].answer.surname) {
-                setError("Please enter your name.");
                 return;
             }
         }
@@ -200,9 +201,9 @@ function Questionnaire() {
   
 
   return (
-    <div className="min-h-screen flex items-start justify-center lg:pt-8">
+    <div className="min-h-screen max-h-screen overflow-y-auto flex items-start justify-center lg:pt-8">
         <div className='w-full lg:w-1/2'>
-            <div className="min-h-screen p-1 lg:min-h-0 w-full mx-auto">
+            <div className="p-1 w-full mx-auto pb-8">
             <h2 className="text-left mb-4 mt-4 font-custom font-thin custom-text-color w-full">
                 {questionnaire[currentQuestionIndex].question}
             </h2>
