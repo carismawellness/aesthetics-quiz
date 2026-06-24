@@ -60,31 +60,39 @@ module.exports = async (req, res) => {
             ],
         };
 
-        // Check for existing contact by email
-        let contactId = null;
-        try {
-            const searchRes  = await fetch(
-                `${GHL_API_URL}/contacts/?locationId=${GHL_LOCATION_ID}&email=${encodeURIComponent(contactInfo.email)}&limit=1`,
-                { headers: ghlHeaders }
-            );
-            const searchData = await searchRes.json();
-            if (searchData?.contacts?.length > 0) contactId = searchData.contacts[0].id;
-        } catch (_) {}
-
-        if (contactId) {
-            await fetch(`${GHL_API_URL}/contacts/${contactId}`, {
-                method : 'PUT',
-                headers: ghlHeaders,
-                body   : JSON.stringify(contactPayload),
-            });
-        } else {
-            const createRes  = await fetch(`${GHL_API_URL}/contacts/`, {
+        // Create or update the contact in a single call. GHL's /contacts/upsert
+        // matches on email/phone, so returning leads and re-submissions update the
+        // existing record instead of failing with "This location does not allow
+        // duplicated contacts" (which the old search-then-create flow did silently).
+        const upsert = async (payload) => {
+            const r = await fetch(`${GHL_API_URL}/contacts/upsert`, {
                 method : 'POST',
                 headers: ghlHeaders,
-                body   : JSON.stringify(contactPayload),
+                body   : JSON.stringify(payload),
             });
-            const createData = await createRes.json();
-            contactId        = createData?.contact?.id;
+            return r.json();
+        };
+
+        let result    = await upsert(contactPayload);
+        let contactId = result?.contact?.id || null;
+
+        // If the full payload is rejected (e.g. a custom-field issue), still
+        // capture the lead's contact details so we never lose a way to reach them.
+        if (!contactId) {
+            result = await upsert({
+                locationId: GHL_LOCATION_ID,
+                firstName : contactInfo.first_name,
+                lastName  : contactInfo.surname,
+                email     : contactInfo.email,
+                phone     : contactInfo.phone,
+                source    : 'Quiz',
+                tags      : ['quiz-lead'],
+            });
+            contactId = result?.contact?.id || null;
+        }
+
+        if (!contactId) {
+            return res.status(502).json({ error: 'Failed to send to GoHighLevel', details: result });
         }
 
         if (contactId) {
